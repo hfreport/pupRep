@@ -78,6 +78,20 @@ const mysql = require("mysql");
         console.log(e)
     }
 
+    //注入脚本
+    // await page.addScriptTag({
+    //         url: 'https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js'
+    //     });
+    // //注入样式
+    // await page.addStyleTag({
+    //
+    // });
+
+    //注册自定义函数到全局
+    await page.exposeFunction('defineFun', async (p1, p2) => {
+        console.log("自定义全局函数");
+    });
+
     //模拟用户行为
     // await page.waitFor(1000)   //延迟1秒输入
     // await page.type("#login_field", "worldhf@sina.com"); //立即输入
@@ -85,7 +99,7 @@ const mysql = require("mysql");
     //     delay: 100
     // })
     // await page.click("input[type=submit]"); //点击登录按钮
-    //截图
+    //截图，截图的时候会影响到开发者工具栏，导致工具栏消失
     // await page.screenshot({
     //     path : "ex.png",
     //     fullPage: true
